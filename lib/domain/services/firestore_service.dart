@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirestoreService {
 
   static FirestoreService? _instance;
-
   static FirestoreService get instance {
     final instance = _instance;
     if (instance != null) {
