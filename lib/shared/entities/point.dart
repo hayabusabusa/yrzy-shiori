@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:shiori/utils/utils.dart';
-
-class Point extends FirestoreCodable<Point> {
+class Point {
   /// ドキュメントの ID.
   final String id;
   /// 詳細情報.
@@ -25,7 +23,6 @@ class Point extends FirestoreCodable<Point> {
     required this.departureDate,
   });
 
-  @override
   Map<String, dynamic> get data => {
     'description': this.description,
     'isStopby': this.isStopby,
@@ -34,8 +31,7 @@ class Point extends FirestoreCodable<Point> {
     'departureDate': this.departureDate,
   };
 
-  @override
-  Point decode(Map<String, dynamic> data, String id) {
+  factory Point.fromData(Map<String, dynamic> data, String id) {
     return Point(
       id: id, 
       description: data['description'], 
