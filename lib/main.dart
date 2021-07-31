@@ -10,7 +10,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PlanDetailScreen(),
+      home: PlansScreen(),
+      theme: ApplicationTheme.light,
+      darkTheme: ApplicationTheme.dark,
+      themeMode: ThemeMode.system,
     );
   }
 }
