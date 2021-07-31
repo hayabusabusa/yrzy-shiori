@@ -5,6 +5,7 @@ class PlansCell extends StatelessWidget {
   final String destination;
   final String departureDate;
   final String homeDate;
+  final VoidCallback onTap;
 
   const PlansCell({ 
     Key? key,
@@ -12,12 +13,13 @@ class PlansCell extends StatelessWidget {
     required this.destination,
     required this.departureDate,
     required this.homeDate,
+    required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         child: Row(

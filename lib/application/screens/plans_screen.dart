@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:shiori/application/screens/screens.dart';
 import 'package:shiori/application/widgets/widgets.dart';
 
 class PlansScreen extends StatelessWidget {
@@ -18,7 +19,12 @@ class PlansScreen extends StatelessWidget {
             title: 'みんなでグランピング！東海出発組 🏎', 
             destination: '伊豆シャボテンビレッジ', 
             departureDate: '8月1日', 
-            homeDate: '8月2日'
+            homeDate: '8月2日',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => PlanDetailScreen())
+              );
+            },
           );
         },
       ),
