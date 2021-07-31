@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+/// Firestore に保存されている地点のデータ.
 class Point {
   /// ドキュメントの ID.
   final String id;
@@ -31,7 +32,10 @@ class Point {
     'departureDate': this.departureDate,
   };
 
-  factory Point.fromData(Map<String, dynamic> data, String id) {
+  factory Point.fromData({
+    required String id, 
+    required Map<String, dynamic> data
+  }) {
     return Point(
       id: id, 
       description: data['description'], 
