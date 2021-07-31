@@ -1,1 +1,1 @@
-export 'plan_detail_screen.dart';
+export 'debug_screen.dart';
