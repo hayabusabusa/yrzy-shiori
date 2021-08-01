@@ -1,0 +1,62 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Distribute
+
+on:
+  push:
+    branches: [ main ]
+    
+jobs:
+  # Build ios app ipa.
+  build_ios:
+    runs-on: macos-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+
+      - name: Install dependency packages
+        run: flutter pub get
+  
+  # Build android app.
+  build_android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 8.x
+        uses: actions/setup-java@v1
+        with:
+          java-version: '8.x'
+      
+      - name: Set up flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      
+      - name: Install flutter dependency packages
+        run: flutter pub get
+
+  # Distribute app with Firebase Distribution.
+  distribute:
+    runs-on: ubuntu-latest
+    needs: [ build_android, build_ios ]
+    timeout-minutes: 20
+
+    steps:
+      - name: Remove all artifacts
+        uses: c-hive/gha-remove-artifacts@v1
+        with:
+          age: '0 days'
