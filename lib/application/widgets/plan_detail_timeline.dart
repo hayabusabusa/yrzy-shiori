@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:shiori/application/widgets/pulse_circle.dart';
+
 class PlanDetailTimeline extends StatelessWidget {
   const PlanDetailTimeline({ Key? key }) : super(key: key);
 
@@ -12,14 +14,6 @@ class PlanDetailTimeline extends StatelessWidget {
         width: 4,
         color: Theme.of(context).dividerColor,
       ),
-    );
-  }
-
-  Widget _buildCircle(BuildContext context) {
-    return Container(
-      width: 28,
-      height: 28,
-      color: Theme.of(context).primaryColor,
     );
   }
 
@@ -67,7 +61,11 @@ class PlanDetailTimeline extends StatelessWidget {
               Row(
                 children: [
                   // UI: Circle
-                  _buildCircle(context),
+                  PulseCircle(
+                    size: 28,
+                    innerColor: Colors.white,
+                    duration: Duration(milliseconds: 1800),
+                  ),
                   const SizedBox(width: 16,),
                   // UI: Departure time
                   Text('08:30')
