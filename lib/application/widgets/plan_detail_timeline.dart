@@ -5,18 +5,6 @@ import 'package:shiori/application/widgets/pulse_circle.dart';
 class PlanDetailTimeline extends StatelessWidget {
   const PlanDetailTimeline({ Key? key }) : super(key: key);
 
-  Widget _buildLine(BuildContext context) {
-    return Positioned(
-      top: 0,
-      left: 28,
-      bottom: 0,
-      child: Container(
-        width: 4,
-        color: Theme.of(context).dividerColor,
-      ),
-    );
-  }
-
   Widget _buildWrappedImages(BuildContext context) {
     return Wrap(
       children: [
@@ -49,8 +37,26 @@ class PlanDetailTimeline extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // UI: Line
-        _buildLine(context),
+        // UI: Top line
+        Positioned(
+          top: 0,
+          left: 28,
+          child: Container(
+            width: 4,
+            height: 30,
+            color: Theme.of(context).dividerColor,
+          ),
+        ),
+        // UI: Bottom line
+        Positioned(
+          top: 30,
+          left: 28,
+          bottom: 0,
+          child: Container(
+            width: 4,
+            color: Theme.of(context).dividerColor,
+          ),
+        ),
         // UI: Contents
         Padding(
           padding: const EdgeInsets.all(16.0),
