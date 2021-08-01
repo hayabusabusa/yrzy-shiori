@@ -14,6 +14,8 @@ class ApplicationTheme {
     dividerColor: Color.fromRGBO(237, 237, 237, 1.0),
     // Scaffold の背景色
     scaffoldBackgroundColor: Colors.white,
+    // トグル系のカラー
+    toggleableActiveColor: _lightModePrimaryColor,
     // AppBar のテーマ
     appBarTheme: AppBarTheme(
       // AppBar の背景色
@@ -48,6 +50,8 @@ class ApplicationTheme {
     primaryColor: _darkModePrimaryColor,
     // divider のカラー
     dividerColor: Color.fromRGBO(84, 84, 88, 1.0),
+    // トグル系のカラー
+    toggleableActiveColor: _darkModePrimaryColor,
     // AppBar のテーマ
     appBarTheme: AppBarTheme(
       // AppBar の背景色

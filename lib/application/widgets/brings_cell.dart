@@ -26,7 +26,6 @@ class _BringsCellState extends State<BringsCell> {
           children: [
             Checkbox(
               value: _isChecked, 
-              activeColor: Theme.of(context).primaryColor,
               onChanged: (value) {
                 setState(() {
                   _isChecked = value ?? false;
