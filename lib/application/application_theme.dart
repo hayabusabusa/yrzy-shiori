@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ApplicationTheme {
+  /// ライトモードのメインカラー
+  static final _lightModePrimaryColor = Color.fromRGBO(73, 187, 137, 1.0);
+  /// ダークモードのメインカラー
+  static final _darkModePrimaryColor = Color.fromRGBO(86, 197, 150, 1.0);
+
   /// アプリのライトモードのテーマ
   static final light = ThemeData.light().copyWith(
     // メインカラー
-    primaryColor: Color.fromRGBO(73, 187, 137, 1.0),
+    primaryColor: _lightModePrimaryColor,
     // divider のカラー
     dividerColor: Color.fromRGBO(237, 237, 237, 1.0),
     // Scaffold の背景色
@@ -31,12 +36,16 @@ class ApplicationTheme {
         color: Colors.grey.shade600,
       ),
     ),
+    // テキストボタンのテーマ
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(primary: _lightModePrimaryColor),
+    )
   );
 
   /// アプリのダークモードのテーマ
   static final dark = ThemeData.dark().copyWith(
     // メインカラー
-    primaryColor: Color.fromRGBO(86, 197, 150, 1.0),
+    primaryColor: _darkModePrimaryColor,
     // divider のカラー
     dividerColor: Color.fromRGBO(84, 84, 88, 1.0),
     // AppBar のテーマ
@@ -51,5 +60,9 @@ class ApplicationTheme {
         ),
       ),
     ),
+    // テキストボタンのテーマ
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(primary: _darkModePrimaryColor),
+    )
   );
 }
