@@ -19,6 +19,11 @@ class PlanDetailScreen extends StatelessWidget {
             SliverList(
               delegate: SliverChildListDelegate([
                 PlanDetailHeader(
+                  onTapPrices: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => PricesScreen())
+                    );
+                  },
                   onTapBrings: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => BringsScreen())

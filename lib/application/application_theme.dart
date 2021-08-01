@@ -25,7 +25,7 @@ class ApplicationTheme {
       textTheme: TextTheme(
         headline6: TextStyle(
           color: Colors.grey.shade800,
-          fontSize: 18,
+          fontSize: 17,
           fontWeight: FontWeight.w600,
         ),
       ),
@@ -59,7 +59,7 @@ class ApplicationTheme {
       // AppBar のタイトルのフォント設定
       textTheme: TextTheme(
         headline6: TextStyle(
-          fontSize: 18,
+          fontSize: 17,
           fontWeight: FontWeight.w600,
         ),
       ),
