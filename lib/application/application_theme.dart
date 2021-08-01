@@ -42,7 +42,7 @@ class ApplicationTheme {
     // AppBar のテーマ
     appBarTheme: AppBarTheme(
       // AppBar の背景色
-      color: Colors.grey.shade900,
+      color: Color.fromRGBO(48, 48, 48, 1.0),
       // AppBar のタイトルのフォント設定
       textTheme: TextTheme(
         headline6: TextStyle(
