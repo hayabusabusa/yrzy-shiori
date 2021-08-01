@@ -19,6 +19,8 @@ dependencies:
   rxdart: ^0.27.0
   # UI
   image_picker: ^0.8.0
+  # Util
+  intl: ^0.17.0
   # Firebase
   firebase_core: ^1.4.0
   firebase_analytics: ^8.2.0
