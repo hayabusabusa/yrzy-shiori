@@ -1,7 +1,16 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class PlanDetailHeader extends StatelessWidget {
-  const PlanDetailHeader({ Key? key }) : super(key: key);
+  final VoidCallback? onTapPrices;
+  final VoidCallback? onTapBrings;
+
+  const PlanDetailHeader({ 
+    Key? key,
+    this.onTapPrices,
+    this.onTapBrings,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +86,7 @@ class PlanDetailHeader extends StatelessWidget {
             Expanded(
               flex: 1,
               child: TextButton.icon(
-                onPressed: () {}, 
+                onPressed: onTapPrices, 
                 icon: Icon(Icons.paid_rounded), 
                 label: Text('32,000円'),
               ),
@@ -90,7 +99,7 @@ class PlanDetailHeader extends StatelessWidget {
             Expanded(
               flex: 1,
               child: TextButton.icon(
-                onPressed: () {}, 
+                onPressed: onTapBrings, 
                 icon: Icon(Icons.badge_rounded), 
                 label: Text('持ち物を確認'),
               ),

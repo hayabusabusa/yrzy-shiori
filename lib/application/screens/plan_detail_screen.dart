@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:shiori/application/screens/screens.dart';
 import 'package:shiori/application/widgets/widgets.dart';
 
 class PlanDetailScreen extends StatelessWidget {
@@ -17,7 +18,13 @@ class PlanDetailScreen extends StatelessWidget {
             // UI: Header
             SliverList(
               delegate: SliverChildListDelegate([
-                PlanDetailHeader(),     
+                PlanDetailHeader(
+                  onTapBrings: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => BringsScreen())
+                    );
+                  },
+                ),     
               ]),
             ),
             // UI: Timelines
