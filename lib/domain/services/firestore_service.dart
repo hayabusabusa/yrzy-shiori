@@ -33,6 +33,18 @@ class FirestoreService {
 
   /// ドキュメント一覧を取得する.
   /// 
+  /// `/yrzy.shiori/v1/{Collection}/{path}` にドキュメントを取得しにいく.
+  Future<QuerySnapshot<Map<String, dynamic>>> getDocuments({
+    required Collection collection,
+  }) async {
+    return _db.collection(_Root.Default.rawValue)
+      .doc(_Version.V1.rawValue)
+      .collection(collection.rawValue)
+      .get();
+  }
+
+  /// ドキュメント一覧を取得する.
+  /// 
   /// `/yrzy.shiori/v1/{Collection}/{path}/{SubCollection}` にドキュメントを取得しにいく.
   Future<QuerySnapshot<Map<String, dynamic>>> getNestedDocuments({
     required Collection collection,
