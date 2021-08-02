@@ -36,7 +36,18 @@ class PlanDetailScreen extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
-                  return PlanDetailTimeline();
+                  // 現在地を仮に2とする.
+                  final currentIndex = 2;
+                  final isCurrent = index == currentIndex;
+                  final isPassed = index <= currentIndex;
+                  final isNext = (index - 1) == currentIndex;
+                  if (index == 0) {
+                    return PlanDetailTimeline.start(isCurrent: isCurrent, isPassed: isPassed,);
+                  } else if (index == 4) {
+                    return PlanDetailTimeline.end();
+                  } else {
+                    return PlanDetailTimeline(isCurrent: isCurrent, isPassed: isPassed, isNext: isNext,);
+                  }
                 },
                 childCount: 4,
               ),

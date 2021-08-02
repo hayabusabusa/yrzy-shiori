@@ -54,7 +54,7 @@ class _PulseCircleState extends State<PulseCircle> with SingleTickerProviderStat
           width: widget.size,
           height: widget.size,
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: color,
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
