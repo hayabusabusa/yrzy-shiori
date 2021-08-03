@@ -16,21 +16,19 @@ class PlanDetailScreen extends StatelessWidget {
         child: CustomScrollView(
           slivers: [
             // UI: Header
-            SliverList(
-              delegate: SliverChildListDelegate([
-                PlanDetailHeader(
-                  onTapPrices: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => PricesScreen())
-                    );
-                  },
-                  onTapBrings: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => BringsScreen())
-                    );
-                  },
-                ),     
-              ]),
+            SliverToBoxAdapter(
+              child: PlanDetailHeader(
+                onTapPrices: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => PricesScreen())
+                  );
+                },
+                onTapBrings: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => BringsScreen())
+                  );
+                },
+              ),
             ),
             // UI: Timelines
             SliverList(

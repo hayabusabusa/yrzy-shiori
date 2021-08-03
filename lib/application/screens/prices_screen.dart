@@ -22,10 +22,8 @@ class PricesScreen extends StatelessWidget {
             ),
           ),
           // UI: Total
-          SliverList(
-            delegate: SliverChildListDelegate([
-              PricesTotalCell(),
-            ]),
+          SliverToBoxAdapter(
+            child: PricesTotalCell(),
           ),
         ],
       ),
