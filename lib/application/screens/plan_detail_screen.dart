@@ -37,9 +37,9 @@ class PlanDetailScreen extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   // 現在地を仮に2とする.
-                  final currentIndex = 2;
+                  final currentIndex = 3;
                   final isCurrent = index == currentIndex;
-                  final isPassed = index <= currentIndex;
+                  final isPassed = index < currentIndex;
                   final isNext = (index - 1) == currentIndex;
                   if (index == 0) {
                     return PlanDetailTimeline.start(isCurrent: isCurrent, isPassed: isPassed,);

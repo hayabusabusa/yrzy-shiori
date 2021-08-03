@@ -58,7 +58,7 @@ class _PulseCircleState extends State<PulseCircle> with SingleTickerProviderStat
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: color.withOpacity(0.4),
+                color: color.withOpacity(0.56),
                 blurRadius: _animation.value,
                 spreadRadius: _animation.value,
               ),

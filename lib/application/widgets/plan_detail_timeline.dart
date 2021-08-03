@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:shiori/application/widgets/none_pulse_circle.dart';
 import 'package:shiori/application/widgets/pulse_circle.dart';
 
 class PlanDetailTimeline extends StatelessWidget {
@@ -44,6 +45,25 @@ class PlanDetailTimeline extends StatelessWidget {
     isEnd: true,
   );
 
+  Widget _buildCircle(BuildContext context) {
+    return isCurrent
+      // 現在の地点の場合は色を変えてアニメーションさせる.
+      ? PulseCircle(
+          size: 28,
+          color: Theme.of(context).primaryColor,
+          innerColor: Colors.white,
+          duration: Duration(milliseconds: 1800),
+        )
+      : NonePulseCircle(
+          size: 28,
+          // 通り過ぎた地点は色を変える.
+          color: isPassed
+            ? Theme.of(context).primaryColor
+            : Theme.of(context).dividerColor,
+          innerColor: Colors.white,
+        );
+  }
+
   Widget _buildTopLine(BuildContext context) {
     return isStart 
       ? const SizedBox() 
@@ -53,8 +73,8 @@ class PlanDetailTimeline extends StatelessWidget {
           child: Container(
             width: 4,
             height: 30,
-            // 次の目的地もしくは通り過ぎた地点の場合は上半分のラインの色を変える.
-            color: isNext || isPassed
+            // 今目的地もしくは通り過ぎた地点の場合は上半分のラインの色を変える.
+            color: isCurrent || isPassed
               ? Theme.of(context).primaryColor 
               : Theme.of(context).dividerColor,
           ),
@@ -120,15 +140,7 @@ class PlanDetailTimeline extends StatelessWidget {
               Row(
                 children: [
                   // UI: Circle
-                  PulseCircle(
-                    size: 28,
-                    // 現在の地点の場合は色を変えてアニメーションさせる.
-                    color: isCurrent 
-                      ? Theme.of(context).primaryColor 
-                      : Theme.of(context).dividerColor,
-                    innerColor: Colors.white,
-                    duration: Duration(milliseconds: 1800),
-                  ),
+                  _buildCircle(context),
                   const SizedBox(width: 16,),
                   // UI: Departure time
                   Text('08:30')
