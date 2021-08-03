@@ -9,6 +9,7 @@ class PlanDetailTimeline extends StatelessWidget {
   final bool isPassed;
   final bool isNext;
   final bool isEnd;
+  final VoidCallback? onTap;
 
   PlanDetailTimeline({ 
     Key? key,
@@ -17,12 +18,14 @@ class PlanDetailTimeline extends StatelessWidget {
     this.isPassed = false,
     this.isNext = false,
     this.isEnd = false,
+    this.onTap,
   }) : super(key: key);
 
   factory PlanDetailTimeline.start({
     Key? key,
     bool isCurrent = false,
     bool isPassed = false,
+    VoidCallback? onTap,
   }) => PlanDetailTimeline(
     key: key,
     isStart: true,
@@ -30,6 +33,7 @@ class PlanDetailTimeline extends StatelessWidget {
     isPassed: isPassed,
     isNext: false,
     isEnd: false,
+    onTap: onTap,
   );
 
   Widget _buildCircle(BuildContext context) {
@@ -84,26 +88,35 @@ class PlanDetailTimeline extends StatelessWidget {
   }
 
   Widget _buildCard(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // UI: Destination
-            Text('場所の名前 XXXX YYYYY ZZZZZ'),
-            const SizedBox(height: 12,),
-            // UI: Images
-            Wrap(
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  color: Theme.of(context).dividerColor,
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // UI: Destination
+              Text(
+                '場所の名前 XXXX YYYYY ZZZZZ',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(height: 12,),
+              // UI: Images
+              Wrap(
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    color: Theme.of(context).dividerColor,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
