@@ -32,19 +32,6 @@ class PlanDetailTimeline extends StatelessWidget {
     isEnd: false,
   );
 
-  factory PlanDetailTimeline.end({
-    Key? key,
-    bool isCurrent = false,
-    bool isPassed = false,
-  }) => PlanDetailTimeline(
-    key: key,
-    isStart: false,
-    isCurrent: isCurrent,
-    isPassed: isPassed,
-    isNext: true,
-    isEnd: true,
-  );
-
   Widget _buildCircle(BuildContext context) {
     return isCurrent
       // 現在の地点の場合は色を変えてアニメーションさせる.

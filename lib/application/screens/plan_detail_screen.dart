@@ -37,19 +37,22 @@ class PlanDetailScreen extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   // 現在地を仮に2とする.
-                  final currentIndex = 3;
+                  final currentIndex = 2;
                   final isCurrent = index == currentIndex;
                   final isPassed = index < currentIndex;
                   final isNext = (index - 1) == currentIndex;
                   if (index == 0) {
+                    // 開始地点のセル.
                     return PlanDetailTimeline.start(isCurrent: isCurrent, isPassed: isPassed,);
                   } else if (index == 4) {
-                    return PlanDetailTimeline.end();
+                    // 帰宅地点のセル.
+                    return PlanDetailTimelineEnd(isCurrent: isCurrent,);
                   } else {
+                    // 通過途中のセル.
                     return PlanDetailTimeline(isCurrent: isCurrent, isPassed: isPassed, isNext: isNext,);
                   }
                 },
-                childCount: 4,
+                childCount: 5,
               ),
             ),
           ],
