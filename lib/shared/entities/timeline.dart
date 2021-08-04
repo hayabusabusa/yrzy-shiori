@@ -4,11 +4,11 @@ import 'package:shiori/shared/entities/point.dart';
 class Timeline {
   /// Firestore に保存されている地点のデータ.
   final Point point;
-  /// 現在地かどうか.
-  final bool isCurrent;
+  /// 通り過ぎた地点かどうか.
+  final bool isPassed;
 
   Timeline({
     required this.point,
-    required this.isCurrent,
+    required this.isPassed,
   });
 }
