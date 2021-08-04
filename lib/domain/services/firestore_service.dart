@@ -23,12 +23,12 @@ class FirestoreService {
   Future<DocumentSnapshot<Map<String, dynamic>>> getDocument({
     required Collection collection,
     required String path,
-    }) async {
-      return _db.collection(_Root.Default.rawValue)
-        .doc(_Version.V1.rawValue)
-        .collection(collection.rawValue)
-        .doc(path)
-        .get();
+  }) async {
+    return _db.collection(_Root.Default.rawValue)
+      .doc(_Version.V1.rawValue)
+      .collection(collection.rawValue)
+      .doc(path)
+      .get();
   }
 
   /// ドキュメント一覧を取得する.
@@ -43,6 +43,24 @@ class FirestoreService {
       .get();
   }
 
+  /// 単一のドキュメントを取得する.
+  /// 
+  /// `/yrzy.shiori/v1/{Collection}/{path}/{SubCollection}` にドキュメントを取得しにいく.
+  Future<DocumentSnapshot<Map<String, dynamic>>> getNestedDocument({
+    required Collection collection,
+    required String path,
+    required SubCollection subCollection,
+    required String subPath,
+  }) async {
+    return _db.collection(_Root.Default.rawValue)
+        .doc(_Version.V1.rawValue)
+        .collection(collection.rawValue)
+        .doc(path)
+        .collection(subCollection.rawValue)
+        .doc(subPath)
+        .get();
+  }
+
   /// ドキュメント一覧を取得する.
   /// 
   /// `/yrzy.shiori/v1/{Collection}/{path}/{SubCollection}` にドキュメントを取得しにいく.
@@ -50,14 +68,13 @@ class FirestoreService {
     required Collection collection,
     required String path,
     required SubCollection subCollection,
-    required String subPath,
-    }) async {
-      return _db.collection(_Root.Default.rawValue)
-        .doc(_Version.V1.rawValue)
-        .collection(collection.rawValue)
-        .doc(path)
-        .collection(subCollection.rawValue)
-        .get();
+  }) async {
+    return _db.collection(_Root.Default.rawValue)
+      .doc(_Version.V1.rawValue)
+      .collection(collection.rawValue)
+      .doc(path)
+      .collection(subCollection.rawValue)
+      .get();
   }
 
   /// 単一のドキュメントを追加する.
