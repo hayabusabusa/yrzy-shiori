@@ -79,6 +79,20 @@ class FirestoreService {
 
   /// 単一のドキュメントを追加する.
   /// 
+  /// `/yrzy.shiori/v1/{Collection}/{RANDOM}` にドキュメントを追加する.
+  Future<void> setDocument({
+    required Collection collection,
+    required Map<String, dynamic> data,
+  }) async {
+    return _db.collection(_Root.Default.rawValue)
+      .doc(_Version.V1.rawValue)
+      .collection(collection.rawValue)
+      .doc()
+      .set(data);
+  }
+
+  /// 単一のドキュメントを追加する.
+  /// 
   /// `/yrzy.shiori/v1/{Collection}/{path}/{SubCollection}/{RANDOM}` にドキュメントを追加する.
   Future<void> setNestedDocument({
     required Collection collection,

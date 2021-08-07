@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:shiori/application/screens/screens.dart';
+import 'package:shiori/application/models/models.dart';
 import 'package:shiori/application/view_models/view_models.dart';
 import 'package:shiori/application/widgets/widgets.dart';
+import 'package:shiori/domain/domain.dart';
 
 class PlansScreen extends StatelessWidget {
 
   static Widget wrapped({
-    required PlansViewModel viewModel
+    PlansViewModel? viewModel
   }) {
+    final _viewModel = viewModel ?? PlansViewModel(PlansModel(firestoreService: FirestoreService.instance));
     return ChangeNotifierProvider(
-      create: (_) => viewModel,
+      create: (_) => _viewModel,
       child: PlansScreen(),
     );
   }
