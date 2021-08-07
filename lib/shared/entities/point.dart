@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Point {
   /// ドキュメントの ID.
   final String id;
+  /// 地点名.
+  final String name;
   /// 詳細情報.
   final String description;
   /// 寄り道かどうか.
@@ -17,6 +19,7 @@ class Point {
 
   Point({
     required this.id,
+    required this.name,
     required this.description,
     required this.isStopby,
     required this.imageURLs,
@@ -25,6 +28,7 @@ class Point {
   });
 
   Map<String, dynamic> get data => {
+    'name': this.name,
     'description': this.description,
     'isStopby': this.isStopby,
     'imageURLs': this.imageURLs,
@@ -38,6 +42,7 @@ class Point {
   }) {
     return Point(
       id: id, 
+      name: data['name'],
       description: data['description'], 
       isStopby: data['isStopby'], 
       imageURLs: data['imageURLs'], 
