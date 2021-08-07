@@ -53,12 +53,12 @@ class FirestoreService {
     required String subPath,
   }) async {
     return _db.collection(_Root.Default.rawValue)
-        .doc(_Version.V1.rawValue)
-        .collection(collection.rawValue)
-        .doc(path)
-        .collection(subCollection.rawValue)
-        .doc(subPath)
-        .get();
+      .doc(_Version.V1.rawValue)
+      .collection(collection.rawValue)
+      .doc(path)
+      .collection(subCollection.rawValue)
+      .doc(subPath)
+      .get();
   }
 
   /// ドキュメント一覧を取得する.
@@ -100,11 +100,13 @@ class FirestoreService {
     required SubCollection subCollection,
     required Map<String, dynamic> data,
   }) async {
-    return _db.collection(collection.rawValue)
-        .doc(path)
-        .collection(subCollection.rawValue)
-        .doc()
-        .set(data);
+    return _db.collection(_Root.Default.rawValue)
+      .doc(_Version.V1.rawValue)
+      .collection(collection.rawValue)
+      .doc(path)
+      .collection(subCollection.rawValue)
+      .doc()
+      .set(data);
   }
 }
 
