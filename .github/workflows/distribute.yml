@@ -42,8 +42,8 @@ jobs:
       - name: Set up provisioning profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          echo "${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}" > release.mobileprovision.txt
-          base64 --decode release.mobileprovision.txt > ~/Library/MobileDevice/Provisioning\ Profiles/YRZY_SHIORI_Release.mobileprovision
+          echo "${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}" > development.mobileprovision.txt
+          base64 --decode development.mobileprovision.txt > ~/Library/MobileDevice/Provisioning\ Profiles/YRZY_SHIORI_Development.mobileprovision
 
       - name: Set up release certificate
         uses: Apple-Actions/import-codesign-certs@v1
