@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:shiori/application/application_router.dart';
 import 'package:shiori/application/screens/screens.dart';
 import 'package:shiori/application/view_models/view_models.dart';
 import 'package:shiori/application/widgets/widgets.dart';
@@ -34,9 +35,7 @@ class PlansScreen extends StatelessWidget {
             departureDate: '8月1日', 
             homeDate: '8月2日',
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => PlanDetailScreen())
-              );
+              Navigator.of(context).pushNamed(ApplicationRouter.planDetail);
             },
           );
         },

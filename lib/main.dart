@@ -13,10 +13,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PlansScreen.wrapped(),
       theme: ApplicationTheme.light,
       darkTheme: ApplicationTheme.dark,
       themeMode: ThemeMode.system,
+      initialRoute: ApplicationRouter.home,
+      onGenerateRoute: (settings) => ApplicationRouter.generateRoute(settings),
     );
   }
 }

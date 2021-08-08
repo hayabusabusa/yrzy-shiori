@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:shiori/application/application_router.dart';
 import 'package:shiori/application/screens/screens.dart';
 import 'package:shiori/application/widgets/widgets.dart';
 
@@ -19,14 +20,10 @@ class PlanDetailScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: PlanDetailHeader(
                 onTapPrices: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => PricesScreen())
-                  );
+                  Navigator.of(context).pushNamed(ApplicationRouter.prices);
                 },
                 onTapBrings: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => BringsScreen())
-                  );
+                  Navigator.of(context).pushNamed(ApplicationRouter.brings);
                 },
               ),
             ),
