@@ -8,20 +8,25 @@ import 'package:shiori/application/screens/screens.dart';
 class ApplicationRouter {
   static const String home = '/';
   static const String brings = '/brings';
+  static const String plans = '/plans';
   static const String planDetail = '/plans_detail';
   static const String prices = '/prices';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case home:
-        final model = PlansModel(firestoreService: FirestoreService.instance);
-        final viewModel = PlansViewModel(model: model);
         return MaterialPageRoute(
-          builder: (_) => PlansScreen.wrapped(viewModel: viewModel),
+          builder: (_) => SplashScreen(),
         );
       case brings:
         return MaterialPageRoute(
           builder: (_) => BringsScreen(),
+        );
+      case plans:
+        final model = PlansModel(firestoreService: FirestoreService.instance);
+        final viewModel = PlansViewModel(model: model);
+        return MaterialPageRoute(
+          builder: (_) => PlansScreen.wrapped(viewModel: viewModel),
         );
       case planDetail:
         return MaterialPageRoute(
