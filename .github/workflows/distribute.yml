@@ -31,13 +31,13 @@ jobs:
           base64 --decode GoogleService-Info.plist.txt > GoogleService-Info.plist
           cd ../../
 
-      - name: Import provisioning profile
+      - name: Set up provisioning profile
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           echo "${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}" > release.mobileprovision.txt
           base64 --decode release.mobileprovision.txt > ~/Library/MobileDevice/Provisioning\ Profiles/YRZY_SHIORI_Release.mobileprovision
 
-      - name: Import release certificate
+      - name: Set up release certificate
         uses: Apple-Actions/import-codesign-certs@v1
         with:
           p12-file-base64: ${{ secrets.IOS_CERTIFICATE_BASE64 }}
@@ -48,6 +48,12 @@ jobs:
 
       - name: Build ipa file
         run: flutter build ipa --release --export-options-plist=ios/ExportOptions.plist --build-number ${GITHUB_RUN_NUMBER}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ios
+          path: build/ios/ipa/SHIORI.ipa
   
   # Build android app.
   build_android:
@@ -85,7 +91,42 @@ jobs:
     timeout-minutes: 20
 
     steps:
+      - name: Download iOS artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ios
+
+      - name: Upload ipa to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_IOS_APP_ID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: shiori_develop
+          file: SHIORI.ipa
+
       - name: Remove all artifacts
         uses: c-hive/gha-remove-artifacts@v1
         with:
           age: '0 days'
+
+  # Teardown on success
+  teardown_on_success:
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+    needs: [ distribute ]
+    timeout-minutes: 10
+
+    steps:
+      - name: Notify result to Slack
+        run: echo "SUCCESS"
+
+  # Teardown on failure
+  teardown_on_failure:
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    needs: [ distribute ]
+    timeout-minutes: 10
+
+    steps:
+      - name: Notify result to Slack
+        run: echo "FAILED"
