@@ -40,20 +40,9 @@ class PlansModel extends PlansModelable {
   void fetch() async {
     _isLoadingSubject.add(true);
     try {
-      // final snapshot = await _firestoreService.getDocuments(collection: Collection.Plans);
-      // final decoded = snapshot.docs.map((e) => Plan.fromData(id: e.id, data: e.data())).toList();
-      // _plansSubject.add(decoded);
-      final plan = Plan(
-        id: '', 
-        createdBy: '小林くん', 
-        createdDate: DateTime.now(), 
-        departure: '川名駅', 
-        departureDate: DateTime.now(), 
-        destination: '名古屋駅', 
-        homeDate: DateTime.now(), 
-        totalPrice: 480,
-      );
-      await _firestoreService.setDocument(collection: Collection.Plans, data: plan.data);
+      final snapshot = await _firestoreService.getDocuments(collection: Collection.Plans);
+      final decoded = snapshot.docs.map((e) => Plan.fromData(id: e.id, data: e.data())).toList();
+      _plansSubject.add(decoded);
     } on Error catch(error) {
       _errorSubject.add(error);
     } catch (error) {
