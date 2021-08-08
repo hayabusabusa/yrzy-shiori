@@ -27,7 +27,7 @@ class PlansViewModel extends ChangeNotifier {
 
   // MARK: Properties
 
-  bool _isLoading = false;
+  bool _isLoading = true;
   bool get isLoading => _isLoading;
 
   List<Plan> _plans = [];
