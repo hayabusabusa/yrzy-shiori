@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:shiori/application/application_router.dart';
-import 'package:shiori/application/screens/screens.dart';
 import 'package:shiori/application/widgets/widgets.dart';
 
 class PlanDetailScreen extends StatelessWidget {
