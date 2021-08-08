@@ -7,9 +7,12 @@ class PlansViewModel extends ChangeNotifier {
 
   // MARK: Dependency
 
-  final PlansModelable _model;
+  late PlansModelable _model;
 
-  PlansViewModel(this._model) {
+  PlansViewModel({
+    required PlansModelable model,
+  }) {
+    _model = model;
     _model.isLoading.listen((event) { 
       _isLoading = event;
       notifyListeners();
