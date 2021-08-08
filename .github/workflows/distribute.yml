@@ -19,6 +19,14 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
+      - name: Cache Pods
+        uses: actions/cache@v2
+        with:
+          path: ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
       - name: Set up flutter
         uses: subosito/flutter-action@v1
         with:
