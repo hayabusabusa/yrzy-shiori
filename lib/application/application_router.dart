@@ -15,8 +15,10 @@ class ApplicationRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case home:
+        final model = PlansModel(firestoreService: FirestoreService.instance);
+        final viewModel = PlansViewModel(model: model);
         return MaterialPageRoute(
-          builder: (_) => SplashScreen(),
+          builder: (_) => PlansScreen.wrapped(viewModel: viewModel),
         );
       case brings:
         return MaterialPageRoute(
