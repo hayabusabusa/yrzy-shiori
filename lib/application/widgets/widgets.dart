@@ -7,3 +7,4 @@ export 'plans_cell.dart';
 export 'platform_indicator.dart';
 export 'prices_cell.dart';
 export 'prices_total_cell.dart';
+export 'splash.dart';
