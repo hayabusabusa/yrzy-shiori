@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Plan {
   /// ドキュメントの ID.
   final String id;
+  /// 予定のタイトル.
+  final String title;
   /// 作成者.
   final String createdBy;
   /// 作成日時.
@@ -25,6 +27,7 @@ class Plan {
 
   Plan({
     required this.id,
+    required this.title,
     required this.createdBy,
     required this.createdDate,
     required this.departure,
@@ -37,30 +40,32 @@ class Plan {
   });
 
   Map<String, dynamic> get data => {
-    "createdBy": createdBy,
-    "createdDate": createdDate,
-    "departure": departure,
-    "departureDate": departureDate,
-    "description": description,
-    "destination": destination,
-    "homeDate": homeDate,
-    "totalPrice": totalPrice,
-    "url": url,
+    'createdBy': createdBy,
+    'createdDate': createdDate,
+    'departure': departure,
+    'departureDate': departureDate,
+    'description': description,
+    'destination': destination,
+    'homeDate': homeDate,
+    'title': title,
+    'totalPrice': totalPrice,
+    'url': url,
   };
 
   factory Plan.fromData({
     required String id,
     required Map<String, dynamic> data
   }) {
-      return Plan(
-        id: id, 
-        createdBy: data['createdBy'], 
-        createdDate: (data['createdDate'] as Timestamp).toDate(), 
-        departure: data['departure'], 
-        departureDate: (data['departureDate'] as Timestamp).toDate(), 
-        destination: data['destination'], 
-        homeDate: (data['homeDate'] as Timestamp).toDate(), 
-        totalPrice: data['totalPrice'],
-      );
+    return Plan(
+      id: id, 
+      title: data['title'],
+      createdBy: data['createdBy'], 
+      createdDate: (data['createdDate'] as Timestamp).toDate(), 
+      departure: data['departure'], 
+      departureDate: (data['departureDate'] as Timestamp).toDate(), 
+      destination: data['destination'], 
+      homeDate: (data['homeDate'] as Timestamp).toDate(), 
+      totalPrice: data['totalPrice'],
+    );
   }
 }
