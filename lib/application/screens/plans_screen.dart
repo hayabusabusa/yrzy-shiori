@@ -34,20 +34,28 @@ class PlansScreen extends StatelessWidget {
           ? Center(
               child: PlatformIndicator(),
             )
-          : ListView.builder(
-            itemCount: plans.length,
-            itemBuilder: (_, index) {
-              final plan = plans[index];
-              return PlansCell(
-                title: 'みんなでグランピング！東海出発組 🏎', 
-                destination: plan.destination, 
-                departureDate: plan.departureDate.formattedString('MM月dd日'),
-                homeDate: plan.homeDate.formattedString('MM月dd日'),
-                onTap: () {
-                  Navigator.of(context).pushNamed(ApplicationRouter.planDetail);
-                },
-              );
+          : RefreshIndicator(
+            color: Theme.of(context).primaryColor,
+            onRefresh: () async {
+              context.read<PlansViewModel>().onRefresh();
             },
+            child: Scrollbar(
+              child: ListView.builder(
+                itemCount: plans.length,
+                itemBuilder: (_, index) {
+                  final plan = plans[index];
+                  return PlansCell(
+                    title: plan.title, 
+                    destination: plan.destination, 
+                    departureDate: plan.departureDate.formattedString('MM月dd日'),
+                    homeDate: plan.homeDate.formattedString('MM月dd日'),
+                    onTap: () {
+                      Navigator.of(context).pushNamed(ApplicationRouter.planDetail);
+                    },
+                  );
+                },
+              ),
+            ),
           ),
       ),
     );

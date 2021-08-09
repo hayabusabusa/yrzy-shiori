@@ -35,6 +35,10 @@ class PlansViewModel extends ChangeNotifier {
 
   // MARK: Public
 
+  void onRefresh() {
+    _model.fetch();
+  }
+
   @override
   void dispose() {
     _model.dispose();
