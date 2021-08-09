@@ -108,6 +108,22 @@ class FirestoreService {
       .doc()
       .set(data);
   }
+
+  /// コレクションの更新を監視する.
+  /// 
+  /// `/yrzy.shiori/v1/{Collection}/{path}/{SubCollection}` のコレクションを監視する.
+  Stream<QuerySnapshot<Map<String, dynamic>>> listenSubCollection({
+    required Collection collection,
+    required String path,
+    required SubCollection subCollection,
+  }) {
+    return _db.collection(_Root.Default.rawValue)
+      .doc(_Version.V1.rawValue)
+      .collection(collection.rawValue)
+      .doc(path)
+      .collection(subCollection.rawValue)
+      .snapshots();
+  }
 }
 
 enum _Root {
