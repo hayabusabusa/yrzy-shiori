@@ -5,7 +5,11 @@ import 'package:shiori/application/application.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+
+  await Future.wait([
+    Firebase.initializeApp(),
+  ]);
+
   runApp(App());
 }
 
