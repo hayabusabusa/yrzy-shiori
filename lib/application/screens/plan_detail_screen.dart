@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:shiori/application/application_router.dart';
+import 'package:shiori/application/view_models/view_models.dart';
 import 'package:shiori/application/widgets/widgets.dart';
 
 class PlanDetailScreen extends StatelessWidget {
-  const PlanDetailScreen({ Key? key }) : super(key: key);
+
+  static Widget wrapped({
+    required PlanDetailViewModel viewModel,
+  }) {
+    return ChangeNotifierProvider(
+      create: (_) => viewModel,
+      child: PlanDetailScreen._(),
+    );
+  }
+
+  PlanDetailScreen._({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -11,9 +11,8 @@ class PlansScreen extends StatelessWidget {
   static Widget wrapped({
     required PlansViewModel viewModel
   }) {
-    final _viewModel = viewModel;
     return ChangeNotifierProvider(
-      create: (_) => _viewModel,
+      create: (_) => viewModel,
       child: PlansScreen(),
     );
   }
@@ -50,7 +49,8 @@ class PlansScreen extends StatelessWidget {
                     departureDate: plan.departureDate.formattedString('MM月dd日'),
                     homeDate: plan.homeDate.formattedString('MM月dd日'),
                     onTap: () {
-                      Navigator.of(context).pushNamed(ApplicationRouter.planDetail);
+                      final args = PlanDetailArgs(plan: plan);
+                      Navigator.of(context).pushNamed(ApplicationRouter.planDetail, arguments: args);
                     },
                   );
                 },

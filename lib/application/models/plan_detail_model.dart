@@ -47,10 +47,10 @@ class PlanDetailModel extends PlanDetailModelable {
     _plan = plan;
     _firestoreService = firestoreService;
     // 現在地を更新するためにタイマーで監視.
-    _timerStream = Stream<int>.periodic(duration)
-      .listen((event) { 
-        print(event);
-      });
+    // _timerStream = Stream<int>.periodic(duration)
+    //   .listen((event) { 
+    //     print(event);
+    //   });
     _planSubject = BehaviorSubject<Plan>.seeded(plan);
   }
 
