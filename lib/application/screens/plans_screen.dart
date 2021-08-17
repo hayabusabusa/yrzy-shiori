@@ -31,7 +31,9 @@ class PlansScreen extends StatelessWidget {
         duration: Duration(milliseconds: 400),
         child: isLoading 
           ? Center(
-              child: PlatformIndicator(),
+              child: CircularProgressIndicator(
+                color: Theme.of(context).primaryColor,
+              ),
             )
           : RefreshIndicator(
             color: Theme.of(context).primaryColor,
