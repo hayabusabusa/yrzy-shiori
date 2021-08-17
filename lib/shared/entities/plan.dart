@@ -63,6 +63,7 @@ class Plan {
       createdDate: (data['createdDate'] as Timestamp).toDate(), 
       departure: data['departure'], 
       departureDate: (data['departureDate'] as Timestamp).toDate(), 
+      description: data['description'],
       destination: data['destination'], 
       homeDate: (data['homeDate'] as Timestamp).toDate(), 
       totalPrice: data['totalPrice'],
