@@ -23,7 +23,8 @@ class PlanDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final plan = context.select((PlanDetailViewModel viewModel) => viewModel.plan);
     final isLoading = context.select((PlanDetailViewModel viewModel) => viewModel.isLoading);
-    //final timelines = context.select((PlanDetailViewModel viewModel) => viewModel.timelines);
+    final timelines = context.select((PlanDetailViewModel viewModel) => viewModel.timelines);
+    final currentIndex = timelines.indexWhere((e) => !e.isPassed);
     return Scaffold(
       appBar: AppBar(
         title: Text('予定詳細'),
@@ -59,23 +60,22 @@ class PlanDetailScreen extends StatelessWidget {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      // 現在地を仮に2とする.
-                      final currentIndex = 2;
+                      final timeline = timelines[index];
                       final isCurrent = index == currentIndex;
-                      final isPassed = index < currentIndex;
                       final isNext = (index - 1) == currentIndex;
                       if (index == 0) {
                         // 開始地点のセル.
-                        return PlanDetailTimeline.start(isCurrent: isCurrent, isPassed: isPassed,);
-                      } else if (index == 4) {
+                        return PlanDetailTimeline.start(isCurrent: isCurrent, isPassed: timeline.isPassed,);
+                      } else if (index == timelines.length - 1) {
                         // 帰宅地点のセル.
-                        return PlanDetailTimelineEnd(isCurrent: isCurrent,);
+                        // 過去の予定などで現在地点が見つからなかった場合は、帰宅のセルを現在地としてハイライト表示にする.
+                        return PlanDetailTimelineEnd(isCurrent: currentIndex == - 1 ? true : isCurrent,);
                       } else {
                         // 通過途中のセル.
-                        return PlanDetailTimeline(isCurrent: isCurrent, isPassed: isPassed, isNext: isNext,);
+                        return PlanDetailTimeline(isCurrent: isCurrent, isPassed: timeline.isPassed, isNext: isNext,);
                       }
                     },
-                    childCount: 5,
+                    childCount: timelines.length,
                   ),
                 ),
               ],
