@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 
 class PlanDetailHeader extends StatelessWidget {
+  final String title;
+  final String destination;
+  final String dateString;
+  final int totalPrice;
+  final String? description;
   final VoidCallback? onTapPrices;
   final VoidCallback? onTapBrings;
 
-  const PlanDetailHeader({ 
+  const PlanDetailHeader({
     Key? key,
+    required this.title,
+    required this.destination,
+    required this.dateString,
+    required this.totalPrice,
+    this.description,
     this.onTapPrices,
     this.onTapBrings,
   }) : super(key: key);
@@ -23,13 +33,15 @@ class PlanDetailHeader extends StatelessWidget {
             children: [
               // UI: Title
               Text(
-                'みんなでグランピング！東海組',
-                style: Theme.of(context).textTheme.subtitle1,
+                this.title,
+                style: Theme.of(context).textTheme.subtitle1?.merge(
+                  TextStyle(fontWeight: FontWeight.w800)
+                ),
               ),
               const SizedBox(height: 4,),
               // UI: Description
               Text(
-                '去年のリベンジで聖地静岡の伊豆にグランピングしに行きます。今年こそはマシュマロを炭で焼いて食べたいです。',
+                this.description ?? '',
                 style: Theme.of(context).textTheme.caption,
               ),
               const SizedBox(height: 8,),
@@ -43,7 +55,7 @@ class PlanDetailHeader extends StatelessWidget {
                   const SizedBox(width: 8,),
                   Expanded(
                     child: Text(
-                      '伊豆シャボテンビレッジ',
+                      this.destination,
                       style: Theme.of(context).textTheme.caption,
                     ),
                   ),
@@ -64,7 +76,7 @@ class PlanDetailHeader extends StatelessWidget {
                   const SizedBox(width: 8,),
                   Expanded(
                     child: Text(
-                      '8月1日 - 8月2日',
+                      this.dateString,
                       style: Theme.of(context).textTheme.caption,
                     ),
                   ),
@@ -86,7 +98,7 @@ class PlanDetailHeader extends StatelessWidget {
               child: TextButton.icon(
                 onPressed: onTapPrices, 
                 icon: Icon(Icons.paid_rounded), 
-                label: Text('32,000円'),
+                label: Text('${this.totalPrice}円'),
               ),
             ),
             Container(

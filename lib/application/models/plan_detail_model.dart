@@ -28,7 +28,7 @@ class PlanDetailModel extends PlanDetailModelable {
 
   // MARK: Properties
 
-  late StreamSubscription<int> _timerStream;
+  // late StreamSubscription<int> _timerStream;
   late BehaviorSubject<Plan> _planSubject;
   Stream<Plan> get plan => _planSubject.stream;
 
@@ -71,7 +71,7 @@ class PlanDetailModel extends PlanDetailModelable {
   }
 
   void dispose() {
-    _timerStream.cancel();
+    // _timerStream.cancel();
     _planSubject.close();
     _isLoadingSubject.close();
     _pointsSubject.close();
