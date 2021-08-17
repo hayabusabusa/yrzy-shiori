@@ -40,14 +40,29 @@ class Point {
     required String id, 
     required Map<String, dynamic> data
   }) {
+    final imageURLs = (data['imageURLs'] as List<dynamic>).map((e) => e as String).toList();
     return Point(
       id: id, 
       name: data['name'],
       description: data['description'], 
       isStopby: data['isStopby'], 
-      imageURLs: data['imageURLs'], 
+      imageURLs: imageURLs, 
       arrivalDate: (data['arrivalDate'] as Timestamp).toDate(), 
       departureDate: (data['departureDate'] as Timestamp).toDate(),
+    );
+  }
+
+  factory Point.home({
+    required DateTime homeDate,
+  }) {
+    return Point(
+      id: '', 
+      name: '', 
+      description: '', 
+      isStopby: false, 
+      imageURLs: [], 
+      arrivalDate: homeDate, 
+      departureDate: homeDate,
     );
   }
 }
