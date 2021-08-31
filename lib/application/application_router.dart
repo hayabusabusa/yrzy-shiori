@@ -11,6 +11,7 @@ class ApplicationRouter {
   static const String brings = '/brings';
   static const String plans = '/plans';
   static const String planDetail = '/plans_detail';
+  static const String pointDetail = '/point_detail';
   static const String prices = '/prices';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -37,6 +38,11 @@ class ApplicationRouter {
         final viewModel = PlanDetailViewModel(model: model);
         return MaterialPageRoute(
           builder: (_) => PlanDetailScreen.wrapped(viewModel: viewModel),
+        );
+      case pointDetail:
+        return MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (_) => PointDetailScreen(),
         );
       case prices:
         return MaterialPageRoute(
