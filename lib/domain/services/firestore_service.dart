@@ -171,6 +171,8 @@ extension _CollectionExtension on Collection {
 }
 
 enum SubCollection {
+  /// 荷物一覧.
+  Brings,
   /// ルート計画内の地点一覧.
   Points,
   /// 費用一覧.
@@ -180,7 +182,9 @@ enum SubCollection {
 extension _SubCollectionExtension on SubCollection {
   String get rawValue {
     switch (this) {
-      case SubCollection.Points :
+      case SubCollection.Brings:
+        return 'brings';
+      case SubCollection.Points:
         return 'points';
       case SubCollection.Prices:
         return 'prices';
