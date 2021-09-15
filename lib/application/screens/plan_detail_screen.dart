@@ -49,7 +49,8 @@ class PlanDetailScreen extends StatelessWidget {
                     totalPrice: plan.totalPrice,
                     description: plan.description,
                     onTapPrices: () {
-                      Navigator.of(context).pushNamed(ApplicationRouter.prices);
+                      final args = PricesArgs(plan: plan);
+                      Navigator.of(context).pushNamed(ApplicationRouter.prices, arguments: args);
                     },
                     onTapBrings: () {
                       Navigator.of(context).pushNamed(ApplicationRouter.brings);

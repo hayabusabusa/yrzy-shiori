@@ -45,8 +45,11 @@ class ApplicationRouter {
           builder: (_) => PointDetailScreen(),
         );
       case prices:
+        final args = settings.arguments as PricesArgs;
+        final model = PricesModel(firestoreService: FirestoreService.instance, plan: args.plan);
+        final viewModel = PricesViewModel(model: model);
         return MaterialPageRoute(
-          builder: (_) => PricesScreen(),
+          builder: (_) => PricesScreen.wrapped(viewModel: viewModel),
         );
       default:
         throw UnimplementedError('/${settings.name} is not configured');
@@ -58,6 +61,14 @@ class PlanDetailArgs {
   final Plan plan;
 
   PlanDetailArgs({
+    required this.plan,
+  });
+}
+
+class PricesArgs {
+  final Plan plan;
+
+  PricesArgs({
     required this.plan,
   });
 }
