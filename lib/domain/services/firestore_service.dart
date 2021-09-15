@@ -172,7 +172,9 @@ extension _CollectionExtension on Collection {
 
 enum SubCollection {
   /// ルート計画内の地点一覧.
-  Points
+  Points,
+  /// 費用一覧.
+  Prices,
 }
 
 extension _SubCollectionExtension on SubCollection {
@@ -180,6 +182,8 @@ extension _SubCollectionExtension on SubCollection {
     switch (this) {
       case SubCollection.Points :
         return 'points';
+      case SubCollection.Prices:
+        return 'prices';
     }
   }
 }
