@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:shiori/application/widgets/none_pulse_circle.dart';
 
 class PlanDetailTimelineEnd extends StatelessWidget {
+  final String name;
+  final String arrivalDate;
   final bool isCurrent;
 
   const PlanDetailTimelineEnd({ 
     Key? key,
+    required this.name,
+    required this.arrivalDate,
     this.isCurrent = false,
   }) : super(key: key);
 
@@ -50,9 +54,9 @@ class PlanDetailTimelineEnd extends StatelessWidget {
                   ),
                   const SizedBox(width: 16,),
                   // UI: Departure time
-                  Text('08:30'),
+                  Text(this.arrivalDate),
                   const SizedBox(width: 8,),
-                  Text('帰宅'),
+                  Text(this.name),
                 ],
               ),
               // UI: Spacer

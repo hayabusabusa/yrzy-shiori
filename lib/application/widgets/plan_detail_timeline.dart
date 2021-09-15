@@ -4,6 +4,10 @@ import 'package:shiori/application/widgets/none_pulse_circle.dart';
 import 'package:shiori/application/widgets/pulse_circle.dart';
 
 class PlanDetailTimeline extends StatelessWidget {
+  final String name;
+  final String arrivalDate;
+  final String departureDate;
+  final String? description;
   final bool isStart;
   final bool isCurrent;
   final bool isPassed;
@@ -13,6 +17,10 @@ class PlanDetailTimeline extends StatelessWidget {
 
   PlanDetailTimeline({ 
     Key? key,
+    required this.name,
+    required this.arrivalDate,
+    required this.departureDate,
+    this.description,
     this.isStart = false,
     this.isCurrent = false,
     this.isPassed = false,
@@ -23,11 +31,19 @@ class PlanDetailTimeline extends StatelessWidget {
 
   factory PlanDetailTimeline.start({
     Key? key,
+    required String name,
+    required String arrivalDate,
+    required String departureDate,
+    String? description,
     bool isCurrent = false,
     bool isPassed = false,
     VoidCallback? onTap,
   }) => PlanDetailTimeline(
     key: key,
+    name: name,
+    arrivalDate: arrivalDate,
+    departureDate: departureDate,
+    description: description,
     isStart: true,
     isCurrent: isCurrent,
     isPassed: isPassed,
@@ -98,23 +114,28 @@ class PlanDetailTimeline extends StatelessWidget {
             children: [
               // UI: Destination
               Text(
-                '場所の名前 XXXX YYYYY ZZZZZ',
+                this.name,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 12,),
-              // UI: Images
-              Wrap(
-                children: [
-                  Container(
-                    width: 40,
-                    height: 40,
-                    color: Theme.of(context).dividerColor,
-                  ),
-                ],
+              // UI: Description
+              Text(
+                this.description ?? '',
+                style: Theme.of(context).textTheme.caption,
               ),
+              // UI: Images
+              // Wrap(
+              //   children: [
+              //     Container(
+              //       width: 40,
+              //       height: 40,
+              //       color: Theme.of(context).dividerColor,
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),
@@ -143,7 +164,7 @@ class PlanDetailTimeline extends StatelessWidget {
                   _buildCircle(context),
                   const SizedBox(width: 16,),
                   // UI: Departure time
-                  Text('08:30')
+                  Text(this.arrivalDate)
                 ],
               ),
               const SizedBox(height: 8,),

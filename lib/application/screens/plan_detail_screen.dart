@@ -66,25 +66,36 @@ class PlanDetailScreen extends StatelessWidget {
                       if (index == 0) {
                         // 開始地点のセル.
                         return PlanDetailTimeline.start(
-                          isCurrent: 
-                          isCurrent, 
+                          name: timeline.point.name,
+                          arrivalDate: timeline.point.arrivalDate.formattedString('HH:mm'),
+                          departureDate: timeline.point.departureDate.formattedString('HH:mm'),
+                          description: timeline.point.description,
+                          isCurrent: isCurrent, 
                           isPassed: timeline.isPassed,
                           onTap: () {
-                            Navigator.of(context).pushNamed(ApplicationRouter.pointDetail);
+                            //Navigator.of(context).pushNamed(ApplicationRouter.pointDetail);
                           },
                         );
                       } else if (index == timelines.length - 1) {
                         // 帰宅地点のセル.
                         // 過去の予定などで現在地点が見つからなかった場合は、帰宅のセルを現在地としてハイライト表示にする.
-                        return PlanDetailTimelineEnd(isCurrent: currentIndex == - 1 ? true : isCurrent,);
+                        return PlanDetailTimelineEnd(
+                          name: plan.destination,
+                          arrivalDate: plan.homeDate.formattedString('HH:mm'),
+                          isCurrent: currentIndex == - 1 ? true : isCurrent,
+                        );
                       } else {
                         // 通過途中のセル.
                         return PlanDetailTimeline(
+                          name: timeline.point.name,
+                          arrivalDate: timeline.point.arrivalDate.formattedString('HH:mm'),
+                          departureDate: timeline.point.departureDate.formattedString('HH:mm'),
+                          description: timeline.point.description,
                           isCurrent: isCurrent, 
                           isPassed: timeline.isPassed, 
                           isNext: isNext,
                           onTap: () {
-                            Navigator.of(context).pushNamed(ApplicationRouter.pointDetail);
+                            //Navigator.of(context).pushNamed(ApplicationRouter.pointDetail);
                           },
                         );
                       }
