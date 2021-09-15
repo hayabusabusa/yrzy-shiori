@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class PricesTotalCell extends StatelessWidget {
-  const PricesTotalCell({ Key? key }) : super(key: key);
+  final String value;
+
+  const PricesTotalCell({ 
+    Key? key,
+    required this.value,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,7 @@ class PricesTotalCell extends StatelessWidget {
               const SizedBox(width: 8,),
               Expanded(
                 child: Text(
-                  '16,800円',
+                  this.value + '円',
                   textAlign: TextAlign.right,
                   style: TextStyle(
                     fontWeight: FontWeight.w700
