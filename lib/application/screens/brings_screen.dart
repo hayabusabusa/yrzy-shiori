@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import 'package:shiori/application/view_models/view_models.dart';
 import 'package:shiori/application/widgets/widgets.dart';
-import 'package:shiori/shared/shared.dart';
 
 class BringsScreen extends StatelessWidget {
 
