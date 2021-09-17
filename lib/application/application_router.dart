@@ -23,8 +23,11 @@ class ApplicationRouter {
           builder: (_) => PlansScreen.wrapped(viewModel: viewModel),
         );
       case brings:
+        final args = settings.arguments as BringsArgs;
+        final model = BringsModel(plan: args.plan, firestoreService: FirestoreService.instance);
+        final viewModel = BringsViewModel(model: model);
         return MaterialPageRoute(
-          builder: (_) => BringsScreen(),
+          builder: (_) => BringsScreen.wrapped(viewModel: viewModel),
         );
       case plans:
         final model = PlansModel(firestoreService: FirestoreService.instance);
@@ -69,6 +72,14 @@ class PricesArgs {
   final Plan plan;
 
   PricesArgs({
+    required this.plan,
+  });
+}
+
+class BringsArgs {
+  final Plan plan;
+
+  BringsArgs({
     required this.plan,
   });
 }
