@@ -37,14 +37,19 @@ class BringsScreen extends StatelessWidget {
           : CustomScrollView(
               slivers: [
                 // UI: Header
-                SliverToBoxAdapter(
+                const SliverToBoxAdapter(
                   child: BringsHeader(),
                 ),
                 // UI: Items
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      return BringsCell();
+                      final bring = brings[index];
+                      return BringsCell(
+                        name: bring.name, 
+                        isRequired: bring.isRequired,
+                        description: bring.description,
+                      );
                     },
                     childCount: brings.length
                   ),

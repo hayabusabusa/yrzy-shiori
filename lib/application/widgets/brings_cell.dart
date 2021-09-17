@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class BringsCell extends StatefulWidget {
-  const BringsCell({ Key? key }) : super(key: key);
+  final String name;
+  final bool isRequired;
+  final String? description;
+
+  BringsCell({
+    Key? key,
+    this.description,
+    required this.name,
+    required this.isRequired,
+  }): super(key: key);
 
   @override
   _BringsCellState createState() => _BringsCellState();
@@ -35,7 +44,7 @@ class _BringsCellState extends State<BringsCell> {
             const SizedBox(width: 8,),
             Flexible(
               child: Text(
-                '健康保険証',
+                this.widget.name,
                 style: TextStyle(
                   fontSize: 16,
                 ),
@@ -43,7 +52,7 @@ class _BringsCellState extends State<BringsCell> {
             ),
             const SizedBox(width: 8,),
             Text(
-              '※必須',
+              this.widget.isRequired ? '※必須' : '',
               style: TextStyle(
                 color: Theme.of(context).errorColor,
                 fontWeight: FontWeight.w700
