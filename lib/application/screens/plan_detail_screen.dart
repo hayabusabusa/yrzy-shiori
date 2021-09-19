@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:shiori/application/application_router.dart';
 import 'package:shiori/application/view_models/view_models.dart';
@@ -55,6 +56,18 @@ class PlanDetailScreen extends StatelessWidget {
                     onTapBrings: () {
                       final args = BringsArgs(plan: plan);
                       Navigator.of(context).pushNamed(ApplicationRouter.brings, arguments: args);
+                    },
+                    onTapLink: plan.url == null 
+                      ? null 
+                      : () async {
+                          final linkURL = plan.url ?? '';
+                          if (await canLaunch(linkURL)) {
+                            await launch(
+                              linkURL,
+                              forceSafariVC: true,
+                              forceWebView: true,
+                            );
+                        }
                     },
                   ),
                 ),

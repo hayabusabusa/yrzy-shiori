@@ -10,6 +10,7 @@ class PlanDetailHeader extends StatelessWidget {
   final String? description;
   final VoidCallback? onTapPrices;
   final VoidCallback? onTapBrings;
+  final VoidCallback? onTapLink;
 
   const PlanDetailHeader({
     Key? key,
@@ -20,7 +21,17 @@ class PlanDetailHeader extends StatelessWidget {
     this.description,
     this.onTapPrices,
     this.onTapBrings,
+    this.onTapLink,
   }) : super(key: key);
+
+  Widget _buildLinkButton() {
+    return this.onTapLink == null 
+      ? const SizedBox()
+      : TextButton(
+          onPressed: this.onTapLink, 
+          child: Text('予約詳細'),
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +73,7 @@ class PlanDetailHeader extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8,),
-                  TextButton(
-                    onPressed: () {}, 
-                    child: Text('予約詳細'),
-                  )
+                  _buildLinkButton(),
                 ],
               ),
               // UI: Date
@@ -98,7 +106,7 @@ class PlanDetailHeader extends StatelessWidget {
             Expanded(
               flex: 1,
               child: TextButton.icon(
-                onPressed: onTapPrices, 
+                onPressed: this.onTapPrices, 
                 icon: Icon(Icons.paid_rounded), 
                 label: Text('${this.totalPrice.formattedString('#,###')}円'),
               ),
@@ -111,7 +119,7 @@ class PlanDetailHeader extends StatelessWidget {
             Expanded(
               flex: 1,
               child: TextButton.icon(
-                onPressed: onTapBrings, 
+                onPressed: this.onTapBrings, 
                 icon: Icon(Icons.badge_rounded), 
                 label: Text('持ち物を確認'),
               ),

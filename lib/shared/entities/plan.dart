@@ -67,6 +67,7 @@ class Plan {
       destination: data['destination'], 
       homeDate: (data['homeDate'] as Timestamp).toDate(), 
       totalPrice: data['totalPrice'],
+      url: data['url'],
     );
   }
 }
