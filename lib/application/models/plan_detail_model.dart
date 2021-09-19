@@ -61,8 +61,9 @@ class PlanDetailModel extends PlanDetailModelable {
     try {
       final snapshot = await _firestoreService.getNestedDocuments(collection: Collection.Plans, path: _plan.id, subCollection: SubCollection.Points);
       final decoded = snapshot.docs.map((e) => Point.fromData(id: e.id, data: e.data())).toList();
-      // 各地点とは別に帰宅用の地点のデータを入る.
-      final points = decoded + [Point.home(arrivalDate: _plan.arrivalDate)];
+      // TODO: 予定から自動で出発地のデータと到着地のデータを作るのかどうか決める.
+      // 今回は手動で出発地と到着地のデータを `points` コレクションに入れるようにしたので、以下のコードをコメントアウト.
+      final points = decoded; //+ [Point.home(arrivalDate: _plan.arrivalDate)];
       // 地点のデータを到着時間で降順にソートする.
       points.sort((lhs, rhs) => lhs.arrivalDate.compareTo(rhs.arrivalDate));
       _pointsSubject.add(points);

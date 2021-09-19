@@ -95,8 +95,8 @@ class PlanDetailScreen extends StatelessWidget {
                         // 帰宅地点のセル.
                         // 過去の予定などで現在地点が見つからなかった場合は、帰宅のセルを現在地としてハイライト表示にする.
                         return PlanDetailTimelineEnd(
-                          name: plan.destination,
-                          arrivalDate: plan.arrivalDate.formattedString('HH:mm'),
+                          name: timeline.point.name,
+                          arrivalDate: timeline.point.arrivalDate.formattedString('HH:mm'),
                           isCurrent: currentIndex == - 1 ? true : isCurrent,
                         );
                       } else {
