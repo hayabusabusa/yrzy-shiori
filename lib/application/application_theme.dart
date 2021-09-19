@@ -22,12 +22,10 @@ class ApplicationTheme {
       color: Colors.white,
       shadowColor: Colors.black38,
       // AppBar のタイトルのフォント設定
-      textTheme: TextTheme(
-        headline6: TextStyle(
-          color: Colors.grey.shade800,
-          fontSize: 17,
-          fontWeight: FontWeight.w600,
-        ),
+      titleTextStyle: TextStyle(
+        color: Colors.grey.shade800,
+        fontSize: 17,
+        fontWeight: FontWeight.w600,
       ),
       // AppBar のアイコンの色
       iconTheme: IconThemeData(
@@ -57,11 +55,9 @@ class ApplicationTheme {
       // AppBar の背景色
       color: Color.fromRGBO(48, 48, 48, 1.0),
       // AppBar のタイトルのフォント設定
-      textTheme: TextTheme(
-        headline6: TextStyle(
-          fontSize: 17,
-          fontWeight: FontWeight.w600,
-        ),
+      titleTextStyle: TextStyle(
+        fontSize: 17,
+        fontWeight: FontWeight.w600,
       ),
     ),
     // テキストボタンのテーマ

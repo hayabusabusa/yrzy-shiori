@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:shiori/shared/shared.dart';
+
 class PlanDetailHeader extends StatelessWidget {
   final String title;
   final String destination;
@@ -98,7 +100,7 @@ class PlanDetailHeader extends StatelessWidget {
               child: TextButton.icon(
                 onPressed: onTapPrices, 
                 icon: Icon(Icons.paid_rounded), 
-                label: Text('${this.totalPrice}円'),
+                label: Text('${this.totalPrice.formattedString('#,###')}円'),
               ),
             ),
             Container(
