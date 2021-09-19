@@ -18,8 +18,8 @@ class Plan {
   final String? description;
   /// 目的地.
   final String destination;
-  /// 帰宅時間.
-  final DateTime homeDate;
+  /// 到着時間.
+  final DateTime arrivalDate;
   /// トータルで必要になる料金.
   final int totalPrice;
   /// 他サービスの URL.
@@ -33,7 +33,7 @@ class Plan {
     required this.departure,
     required this.departureDate,
     required this.destination,
-    required this.homeDate,
+    required this.arrivalDate,
     required this.totalPrice,
     this.description,
     this.url,
@@ -46,7 +46,7 @@ class Plan {
     'departureDate': departureDate,
     'description': description,
     'destination': destination,
-    'homeDate': homeDate,
+    'arrivalDate': arrivalDate,
     'title': title,
     'totalPrice': totalPrice,
     'url': url,
@@ -65,7 +65,7 @@ class Plan {
       departureDate: (data['departureDate'] as Timestamp).toDate(), 
       description: data['description'],
       destination: data['destination'], 
-      homeDate: (data['homeDate'] as Timestamp).toDate(), 
+      arrivalDate: (data['arrivalDate'] as Timestamp).toDate(), 
       totalPrice: data['totalPrice'],
       url: data['url'],
     );

@@ -46,7 +46,7 @@ class PlanDetailScreen extends StatelessWidget {
                   child: PlanDetailHeader(
                     title: plan.title,
                     destination: plan.destination,
-                    dateString: '${plan.departureDate.formattedString('MM月dd日')} - ${plan.homeDate.formattedString('MM月dd日')}',
+                    dateString: '${plan.departureDate.formattedString('MM月dd日')} - ${plan.arrivalDate.formattedString('MM月dd日')}',
                     totalPrice: plan.totalPrice,
                     description: plan.description,
                     onTapPrices: () {
@@ -96,7 +96,7 @@ class PlanDetailScreen extends StatelessWidget {
                         // 過去の予定などで現在地点が見つからなかった場合は、帰宅のセルを現在地としてハイライト表示にする.
                         return PlanDetailTimelineEnd(
                           name: plan.destination,
-                          arrivalDate: plan.homeDate.formattedString('HH:mm'),
+                          arrivalDate: plan.arrivalDate.formattedString('HH:mm'),
                           isCurrent: currentIndex == - 1 ? true : isCurrent,
                         );
                       } else {

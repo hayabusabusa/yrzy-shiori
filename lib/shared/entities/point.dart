@@ -53,7 +53,7 @@ class Point {
   }
 
   factory Point.home({
-    required DateTime homeDate,
+    required DateTime arrivalDate,
   }) {
     return Point(
       id: '', 
@@ -61,8 +61,8 @@ class Point {
       description: '', 
       isStopby: false, 
       imageURLs: [], 
-      arrivalDate: homeDate, 
-      departureDate: homeDate,
+      arrivalDate: arrivalDate, 
+      departureDate: arrivalDate,
     );
   }
 }

@@ -49,7 +49,7 @@ class PlansScreen extends StatelessWidget {
                     title: plan.title, 
                     destination: plan.destination, 
                     departureDate: plan.departureDate.formattedString('MM月dd日'),
-                    homeDate: plan.homeDate.formattedString('MM月dd日'),
+                    homeDate: plan.arrivalDate.formattedString('MM月dd日'),
                     onTap: () {
                       final args = PlanDetailArgs(plan: plan);
                       Navigator.of(context).pushNamed(ApplicationRouter.planDetail, arguments: args);
