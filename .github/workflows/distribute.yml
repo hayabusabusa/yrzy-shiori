@@ -140,7 +140,7 @@ jobs:
         with:
           appId: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
-          groups: android_tester
+          groups: shiori_develop_android
           file: app-release.apk
 
       - name: Remove all artifacts
