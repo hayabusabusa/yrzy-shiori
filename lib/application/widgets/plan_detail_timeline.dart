@@ -104,10 +104,10 @@ class PlanDetailTimeline extends StatelessWidget {
   }
 
   Widget _buildDateLabels(BuildContext context) {
-    // 到着時刻と出発時刻が同じ時間なら到着時刻のみ表示する.
+    // 到着時刻と出発時刻が同じ時間なら出発時刻のみ表示する.
     return this.departureDate == this.arrivalDate 
       ? Text(
-          this.arrivalDate,
+          this.departureDate,
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
