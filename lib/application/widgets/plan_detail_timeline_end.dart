@@ -53,9 +53,15 @@ class PlanDetailTimelineEnd extends StatelessWidget {
                     innerColor: Colors.white,
                   ),
                   const SizedBox(width: 16,),
-                  // UI: Departure time
-                  Text(this.arrivalDate),
+                  // UI: Arrival time
+                  Text(
+                    this.arrivalDate,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   const SizedBox(width: 8,),
+                  // UI: Name
                   Text(this.name),
                 ],
               ),

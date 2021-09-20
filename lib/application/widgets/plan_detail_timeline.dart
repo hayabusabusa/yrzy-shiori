@@ -103,6 +103,33 @@ class PlanDetailTimeline extends StatelessWidget {
     );
   }
 
+  Widget _buildDateLabels(BuildContext context) {
+    // 到着時刻と出発時刻が同じ時間なら到着時刻のみ表示する.
+    return this.departureDate == this.arrivalDate 
+      ? Text(
+          this.arrivalDate,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        )
+      : Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              this.arrivalDate,
+              style: Theme.of(context).textTheme.caption,
+            ),
+            Text(
+              this.departureDate,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        );
+  }
+
   Widget _buildCard(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
@@ -163,8 +190,8 @@ class PlanDetailTimeline extends StatelessWidget {
                   // UI: Circle
                   _buildCircle(context),
                   const SizedBox(width: 16,),
-                  // UI: Departure time
-                  Text(this.arrivalDate)
+                  // UI: Date Labels
+                  _buildDateLabels(context),
                 ],
               ),
               const SizedBox(height: 8,),
