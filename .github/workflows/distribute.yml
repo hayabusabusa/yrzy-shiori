@@ -88,9 +88,27 @@ jobs:
           echo "${{ secrets.GOOGLE_SERVICES_JSON_BASE64 }}" > google-services.json.txt
           base64 --decode google-services.json.txt > google-services.json
           cd ../../
+
+      - name: Set up keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" > release.jks.txt
+          base64 --decode release.jks.txt > release.jks
       
       - name: Install flutter dependency packages
         run: flutter pub get
+
+      - name: Build apk file
+        run: |
+          export KEYSTORE_PASSWORD='${{ secrets.KEYSTORE_PASSWORD }}'
+          export KEY_ALIAS='${{ secrets.KEY_ALIAS }}'
+          export KEY_PASSWORD='${{ secrets.KEYSTORE_PASSWORD }}'
+          flutter build apk --release --build-number ${GITHUB_RUN_NUMBER}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: android
+          path: build/app/outputs/flutter-apk/app-release.apk
 
   # Distribute app with Firebase Distribution.
   distribute:
@@ -111,6 +129,19 @@ jobs:
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: shiori_develop
           file: SHIORI.ipa
+      
+      - name: Download Android artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: android
+
+      - name: Upload apk to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          token: ${{ secrets.FIREBASE_TOKEN }}
+          groups: android_tester
+          file: app-release.apk
 
       - name: Remove all artifacts
         uses: c-hive/gha-remove-artifacts@v1
