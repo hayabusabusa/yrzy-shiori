@@ -5,7 +5,7 @@ import 'package:shiori/shared/shared.dart';
 class PlanDetailHeader extends StatelessWidget {
   final String title;
   final String destination;
-  final String dateString;
+  final String date;
   final int totalPrice;
   final String? description;
   final VoidCallback? onTapPrices;
@@ -16,7 +16,7 @@ class PlanDetailHeader extends StatelessWidget {
     Key? key,
     required this.title,
     required this.destination,
-    required this.dateString,
+    required this.date,
     required this.totalPrice,
     this.description,
     this.onTapPrices,
@@ -86,7 +86,7 @@ class PlanDetailHeader extends StatelessWidget {
                   const SizedBox(width: 8,),
                   Expanded(
                     child: Text(
-                      this.dateString,
+                      this.date,
                       style: Theme.of(context).textTheme.caption,
                     ),
                   ),

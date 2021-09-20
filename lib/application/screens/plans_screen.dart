@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:shiori/application/application_router.dart';
 import 'package:shiori/application/view_models/view_models.dart';
 import 'package:shiori/application/widgets/widgets.dart';
-import 'package:shiori/shared/shared.dart';
 
 class PlansScreen extends StatelessWidget {
 
@@ -48,8 +47,7 @@ class PlansScreen extends StatelessWidget {
                   return PlansCell(
                     title: plan.title, 
                     destination: plan.destination, 
-                    departureDate: plan.departureDate.formattedString('MM月dd日'),
-                    homeDate: plan.arrivalDate.formattedString('MM月dd日'),
+                    date: plan.formattedDurationString(),
                     onTap: () {
                       final args = PlanDetailArgs(plan: plan);
                       Navigator.of(context).pushNamed(ApplicationRouter.planDetail, arguments: args);

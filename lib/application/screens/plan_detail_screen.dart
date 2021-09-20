@@ -46,7 +46,7 @@ class PlanDetailScreen extends StatelessWidget {
                   child: PlanDetailHeader(
                     title: plan.title,
                     destination: plan.destination,
-                    dateString: '${plan.departureDate.formattedString('MM月dd日')} - ${plan.arrivalDate.formattedString('MM月dd日')}',
+                    date: plan.formattedDurationString(),
                     totalPrice: plan.totalPrice,
                     description: plan.description,
                     onTapPrices: () {

@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:shiori/shared/shared.dart';
+
 /// Firestore に保存されている予定のデータ.
 class Plan {
   /// ドキュメントの ID.
@@ -69,5 +71,32 @@ class Plan {
       totalPrice: data['totalPrice'],
       url: data['url'],
     );
+  }
+
+  /// 整形した出発から到着までの期間の文字列を返す.
+  String formattedDurationString() {
+    final today = DateTime.now();
+    final isAnotherYear = this.departureDate.year != today.year || this.arrivalDate.year != today.year;
+
+    final duration = this.departureDate.difference(this.arrivalDate).inDays;
+    final isSameDay = duration <= 0;
+    
+    // 違う年の1日の予定 2021年01月01日
+    if (isAnotherYear && isSameDay) {
+      return this.departureDate.formattedString('yyyy年MM月dd日');
+    }
+
+    // 違う年の予定 2021年01月01日 - 2021年01月02日
+    if (isAnotherYear) {
+      return this.departureDate.formattedString('yyyy年MM月dd日') + '-' + this.arrivalDate.formattedString('yyyy年MM月dd日');
+    }
+
+    // 同じ年の1日の予定 01月01日
+    if (isSameDay) {
+      return this.departureDate.formattedString('MM月dd日');
+    }
+
+    // その他 01月01日 - 01月02日
+    return this.departureDate.formattedString('MM月dd日') + '-' + this.arrivalDate.formattedString('MM月dd日');
   }
 }

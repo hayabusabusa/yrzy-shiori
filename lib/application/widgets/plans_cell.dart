@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 class PlansCell extends StatelessWidget {
   final String title;
   final String destination;
-  final String departureDate;
-  final String homeDate;
+  final String date;
   final VoidCallback onTap;
 
   const PlansCell({ 
     Key? key,
     required this.title,
     required this.destination,
-    required this.departureDate,
-    required this.homeDate,
+    required this.date,
     required this.onTap,
   }) : super(key: key);
 
@@ -63,7 +61,7 @@ class PlansCell extends StatelessWidget {
                       ),
                       const SizedBox(width: 4,),
                       Text(
-                        '$departureDate - $homeDate',
+                        this.date,
                         style: Theme.of(context).textTheme.caption,
                       ),
                     ],
