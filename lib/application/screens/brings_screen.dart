@@ -27,7 +27,7 @@ class BringsScreen extends StatelessWidget {
       ),
       body: AnimatedSwitcher(
         duration: Duration(milliseconds: 400),
-        child: isLoading 
+        child: isLoading
           ? Center(
               child: CircularProgressIndicator(
                 color: Theme.of(context).primaryColor,

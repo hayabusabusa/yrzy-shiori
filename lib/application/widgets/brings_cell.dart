@@ -46,7 +46,7 @@ class _BringsCellState extends State<BringsCell> {
               child: Text(
                 this.widget.name,
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 14,
                 ),
               ),
             ),
